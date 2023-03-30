@@ -39,28 +39,35 @@ pygame.display.set_caption('Cube Rotato')
 screen = pygame.display.set_mode((width, height))
 
 # Cube setup using NumPy
-
 scale = 100
 angle = 1
 circle_pos = [width/2, height/2]
 
+# Set up the points
 points = []
 for x in (1, -1):
     for y in (1, -1):
         for z in (1, -1):
             points.append(np.array([x, y, z]))
 
-print(points)
-
-projection_matrix = np.array([
-    [1,0,0],
-    [0,1,0],
-    [0,0,0]
-    ])
-
+# Create projection points array
 projected_points = [[n, n] for n in range(len(points))]
 
+# Projection Matrix
+size = 1
+projection_matrix = np.array([
+    [size,0,0],
+    [0,size,0],
+    [0,0,0]
+    ])
+size_increase = False
+size_decrease = False
+
 clock = pygame.time.Clock()
+pygame.font.init()
+my_font = pygame.font.SysFont('comic sans', 30)
+
+text_surface = my_font.render('cube rotato', True, (255, 255, 255))
 
 # Base PyGame loop
 while True:
@@ -75,6 +82,26 @@ while True:
             if event.key == pygame.K_ESCAPE:
                 pygame.quit()
                 exit()
+            if event.key == pygame.K_w:
+                size_increase = True
+            if event.key == pygame.K_s:
+                size_decrease = True
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_w:
+                size_increase = False
+            if event.key == pygame.K_s:
+                size_decrease = False
+
+    if size_increase:
+        size += 0.02
+    if size_decrease and size >= 0:
+        size -= 0.02
+
+    projection_matrix = np.array([
+        [size,0,0],
+        [0,size,0],
+        [0,0,0]
+        ])
 
     rotate_x = np.array([
         [1, 0, 0],
@@ -97,7 +124,8 @@ while True:
     angle += 0.01
 
     screen.fill(BLACK)
-    
+    screen.blit(text_surface, text_surface.get_rect(center = screen.get_rect().center))
+
     i = 0
     for point in points:
 
@@ -130,5 +158,12 @@ while True:
     connect_points(1, 5, projected_points)
     connect_points(2, 6, projected_points)
     connect_points(3, 7, projected_points)
+
+    # connect_points(0, 7, projected_points)
+    # connect_points(1, 6, projected_points)
+    # connect_points(2, 5, projected_points)
+    # connect_points(3, 4, projected_points)
+
+    
 
     pygame.display.update()
