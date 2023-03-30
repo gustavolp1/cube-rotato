@@ -2,6 +2,8 @@ import numpy as np
 import pygame
 import math
 
+# https://www.youtube.com/watch?v=qw0oY6Ld-L0&ab_channel=Pythonista_
+
 # Colors
 BLACK = (0,0,0)
 GREEN = (0,255,0)
