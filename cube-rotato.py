@@ -2,10 +2,8 @@ import numpy as np
 import pygame
 from math import *
 
-# https://www.youtube.com/watch?v=qw0oY6Ld-L0&ab_channel=Pythonista_
-
 def connect_points(i,j,points):
-    pygame.draw.line(screen, rainbow_color(color), ((points[i][0]), (points[i][1])), ((points[j][0]), (points[j][1])))
+    pygame.draw.line(screen, rainbow_color(color), ((points[i][0]), (points[i][1])), ((points[j][0]), (points[j][1])), 2)
     return
 
 color = 0
@@ -48,20 +46,21 @@ points = []
 for x in (1, -1):
     for y in (1, -1):
         for z in (1, -1):
-            points.append(np.array([x, y, z]))
+            points.append(np.array([x, y, z, 0]))
 
 # Create projection points array
 projected_points = [[n, n] for n in range(len(points))]
 
 # Projection Matrix
-size = 1
-projection_matrix = np.array([
-    [size,0,0],
-    [0,size,0],
-    [0,0,0]
+d = 1
+projmatrix = np.array([
+    [1, 0, 0, 0],
+    [0, 1, 0, 0],
+    [0, 0, 0, -d],
+    [0, 0, -1/d, 0],
     ])
-size_increase = False
-size_decrease = False
+d_increase = False
+d_decrease = False
 
 clock = pygame.time.Clock()
 pygame.font.init()
@@ -83,42 +82,46 @@ while True:
                 pygame.quit()
                 exit()
             if event.key == pygame.K_w:
-                size_increase = True
+                d_increase = True
             if event.key == pygame.K_s:
-                size_decrease = True
+                d_decrease = True
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_w:
-                size_increase = False
+                d_increase = False
             if event.key == pygame.K_s:
-                size_decrease = False
+                d_decrease = False
 
-    if size_increase:
-        size += 0.02
-    if size_decrease and size >= 0:
-        size -= 0.02
+    if d_increase:
+        d += 0.02
+    if d_decrease and d >= 0:
+        d -= 0.02
 
-    projection_matrix = np.array([
-        [size,0,0],
-        [0,size,0],
-        [0,0,0]
+    projmatrix = np.array([
+        [1, 0, 0, 0],
+        [0, 1, 0, 0],
+        [0, 0, 0, -d],
+        [0, 0, -1/d, 0],
         ])
 
     rotate_x = np.array([
-        [1, 0, 0],
-        [0, cos(angle), -sin(angle)],
-        [0, sin(angle), cos(angle)]
+        [1, 0, 0, 0],
+        [0, cos(angle), -sin(angle), 0],
+        [0, sin(angle), cos(angle), 0],
+        [0, 0, 0, 1],
     ])
 
     rotate_y = np.array([
-        [cos(angle), 0, sin(angle)],
-        [0, 1, 0],
-        [-sin(angle), 0, cos(angle)]
+        [cos(angle), 0, sin(angle), 0],
+        [0, 1, 0, 0],
+        [-sin(angle), 0, cos(angle), 0],
+        [0, 0, 0, 1],
     ])
 
     rotate_z = np.array([
-        [cos(angle), -sin(angle), 0],
-        [sin(angle), cos(angle), 0],
-        [0, 0, 1]
+        [cos(angle), -sin(angle), 0, 0],
+        [sin(angle), cos(angle), 0, 0],
+        [0, 0, 1, 0],
+        [0, 0, 0, 1],
     ])
 
     angle += 0.01
@@ -129,11 +132,11 @@ while True:
     i = 0
     for point in points:
 
-        rotated2d = np.dot(rotate_z, point.reshape((3,1)))
+        rotated2d = np.dot(rotate_z, point.reshape((4,1)))
         rotated2d = np.dot(rotate_y, rotated2d)
         rotated2d = np.dot(rotate_x, rotated2d)
 
-        projected2d = np.dot(projection_matrix, rotated2d)
+        projected2d = np.dot(projmatrix, rotated2d)
 
         x = int(projected2d[0][0] * scale) + circle_pos[0]
         y = int(projected2d[1][0] * scale) + circle_pos[1]
