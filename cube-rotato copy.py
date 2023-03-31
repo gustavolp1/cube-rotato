@@ -47,15 +47,23 @@ points = []
 for x in (1, -1):
     for y in (1, -1):
         for z in (1, -1):
-            points.append([x, y, z, 1])
+            points.append(np.array([x, y, z, 1]))
+            
+points = np.array([points]).T
 
-points = np.array(points)
+print(points)
 
 # Create projection points array
 projected_points = [[n, n] for n in range(len(points))]
-print(projected_points)
+
 # Projection Matrix
-d = 300
+d = 1
+projmatrix = np.array([
+    [1, 0, 0, 0],
+    [0, 1, 0, 0],
+    [0, 0, 0, -d],
+    [0, 0, -1/d, 0],
+    ])
 d_increase = False
 d_decrease = False
 
@@ -89,11 +97,11 @@ while True:
                 d_decrease = False
 
     if d_increase:
-        d += 1
+        d += 0.02
     if d_decrease and d >= 0:
-        d -= 1
+        d -= 0.02
 
-    T = np.array([
+    projmatrix = np.array([
         [1, 0, 0, 0],
         [0, 1, 0, 0],
         [0, 0, 0, -d],
@@ -126,25 +134,31 @@ while True:
     screen.fill(BLACK)
     screen.blit(text_surface, text_surface.get_rect(center = screen.get_rect().center))
 
-    R = rotate_x@rotate_y@rotate_z # Prepara Matriz de Rotacao.
-    z_deslocate = 3 # distancia do cubo.
-    Tz = np.array(([1,0,0,0],[0,1,0,0],[0,0,1,z_deslocate],[0,0,0,1])) # matriz que aplica uma transformacao em z, o que adiciona uma variacao de "profundidade".
-    transl = np.array([ [1,0,0, width/2], [0,1,0,height/2], [0,0,1,0], [0,0,0,1] ]) # translacao para o meio da tela
-    T = transl@T@Tz@R # preparando a matriz de transformacao;
-    # primeiro multiplicamos a matriz R por Tz para ajustarmos a posicao do cubo de nosso ponto de referencia'
-    # depois passamos para o mundo 2d e por ultimo aplicamos a translacao para colocar o cubo no centro da tela
-    d_points = T@(points).T
+    i = 0
+    for point in points:
 
-    p_points = []
-    for point in d_points.T:
-        x = point[0]/point[3]
-        y = point[1]/point[3]
-        p_points.append((x, y))
+        rotated2d = np.dot(rotate_z, point.reshape((4,1)))
+        rotated2d = np.dot(rotate_y, rotated2d)
+        rotated2d = np.dot(rotate_x, rotated2d)
+
+        #rotated2d = np.dot(np.array([[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]), point.reshape((4,1)))
+
+        projected2d = np.dot(projmatrix, rotated2d)
+
+        projected2d[0] = projected2d[0]/projected2d[3]
+        projected2d[1] = projected2d[1]/projected2d[3]
+
+        projected2d = np.dot(np.array([ [1, 0, 0, width/2], [0, 1, 0, height/2], [0, 0, 1, 0], [0, 0, 0, 1] ]), projected2d)
+
+        x = int(projected2d[0][0] * scale) + circle_pos[0]
+        y = int(projected2d[1][0] * scale) + circle_pos[1]
+
+        projected_points[i] = [x,y]
         pygame.draw.circle(screen, rainbow_color(color), (x, y), 5)
+        i += 1
 
     color = (color + 1) % (256 * 6)
     
-
     connect_points(0, 1, projected_points)
     connect_points(1, 3, projected_points)
     connect_points(3, 2, projected_points)
