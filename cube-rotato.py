@@ -1,6 +1,7 @@
 import numpy as np
 import pygame
 from math import *
+import random
 
 def connect_points(i,j,points):
     pygame.draw.line(screen, rainbow_color(color), ((points[i][0]), (points[i][1])), ((points[j][0]), (points[j][1])), 2)
@@ -39,6 +40,7 @@ screen = pygame.display.set_mode((width, height))
 # Cube setup using NumPy
 scale = 100
 angle = 1
+anglex = 1
 #circle_pos = [width/2, height/2]
 circle_pos = [0, 0]
 
@@ -53,11 +55,12 @@ points = np.array(points)
 
 # Create projection points array
 projected_points = [[n, n] for n in range(len(points))]
-print(projected_points)
+#print(projected_points)
 # Projection Matrix
 d = 300
 d_increase = False
 d_decrease = False
+anglex_r = False
 
 clock = pygame.time.Clock()
 pygame.font.init()
@@ -82,28 +85,37 @@ while True:
                 d_increase = True
             if event.key == pygame.K_s:
                 d_decrease = True
+            if event.key == pygame.K_DOWN:
+                anglex_r = True
+
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_w:
                 d_increase = False
             if event.key == pygame.K_s:
                 d_decrease = False
+            if event.key == pygame.K_DOWN:
+                anglex_r = False
 
     if d_increase:
-        d += 1
-    if d_decrease and d >= 0:
-        d -= 1
+        d += 5
+    if d_decrease and d > 0:
+        d -= 5
 
-    T = np.array([
-        [1, 0, 0, 0],
-        [0, 1, 0, 0],
-        [0, 0, 0, -d],
-        [0, 0, -1/d, 0],
-        ])
+    if anglex_r:
+        anglex += 0.02 
+
+    if d != 0:
+        T = np.array([
+            [1, 0, 0, 0],
+            [0, 1, 0, 0],
+            [0, 0, 0, -d],
+            [0, 0, -1/d, 0],
+            ])
 
     rotate_x = np.array([
         [1, 0, 0, 0],
-        [0, cos(angle), -sin(angle), 0],
-        [0, sin(angle), cos(angle), 0],
+        [0, cos(anglex), -sin(anglex), 0],
+        [0, sin(anglex), cos(anglex), 0],
         [0, 0, 0, 1],
     ])
 
@@ -126,7 +138,7 @@ while True:
     screen.fill(BLACK)
     screen.blit(text_surface, text_surface.get_rect(center = screen.get_rect().center))
 
-    R = rotate_x@rotate_y@rotate_z # Prepara Matriz de Rotacao.
+    R = rotate_x#@rotate_y@rotate_z # Prepara Matriz de Rotacao.
     z_deslocate = 3 # distancia do cubo.
     Tz = np.array(([1,0,0,0],[0,1,0,0],[0,0,1,z_deslocate],[0,0,0,1])) # matriz que aplica uma transformacao em z, o que adiciona uma variacao de "profundidade".
     transl = np.array([ [1,0,0, width/2], [0,1,0,height/2], [0,0,1,0], [0,0,0,1] ]) # translacao para o meio da tela
@@ -145,20 +157,20 @@ while True:
     color = (color + 1) % (256 * 6)
     
 
-    connect_points(0, 1, projected_points)
-    connect_points(1, 3, projected_points)
-    connect_points(3, 2, projected_points)
-    connect_points(2, 0, projected_points)
+    connect_points(0, 1, p_points)
+    connect_points(1, 3, p_points)
+    connect_points(3, 2, p_points)
+    connect_points(2, 0, p_points)
 
-    connect_points(4, 5, projected_points)
-    connect_points(5, 7, projected_points)
-    connect_points(7, 6, projected_points)
-    connect_points(6, 4, projected_points)
+    connect_points(4, 5, p_points)
+    connect_points(5, 7, p_points)
+    connect_points(7, 6, p_points)
+    connect_points(6, 4, p_points)
 
-    connect_points(0, 4, projected_points)
-    connect_points(1, 5, projected_points)
-    connect_points(2, 6, projected_points)
-    connect_points(3, 7, projected_points)
+    connect_points(0, 4, p_points)
+    connect_points(1, 5, p_points)
+    connect_points(2, 6, p_points)
+    connect_points(3, 7, p_points)
 
     # connect_points(0, 7, projected_points)
     # connect_points(1, 6, projected_points)

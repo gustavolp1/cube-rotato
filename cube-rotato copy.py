@@ -51,8 +51,6 @@ for x in (1, -1):
             
 points = np.array([points]).T
 
-print(points)
-
 # Create projection points array
 projected_points = [[n, n] for n in range(len(points))]
 
