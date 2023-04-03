@@ -4,7 +4,7 @@ from math import *
 import random
 
 def connect_points(i,j,points):
-    pygame.draw.line(screen, rainbow_color(color), ((points[i][0]), (points[i][1])), ((points[j][0]), (points[j][1])), 2)
+    pygame.draw.line(screen, rainbow_color(color), ((points[i][0]), (points[i][1])), ((points[j][0]), (points[j][1])), 5)
     return
 
 color = 0
@@ -39,8 +39,10 @@ screen = pygame.display.set_mode((width, height))
 
 # Cube setup using NumPy
 scale = 100
-angle = 1
-anglex = 1
+angle = 0
+anglex = 0
+angley = 0
+anglez = 0
 #circle_pos = [width/2, height/2]
 circle_pos = [0, 0]
 
@@ -57,10 +59,16 @@ points = np.array(points)
 projected_points = [[n, n] for n in range(len(points))]
 #print(projected_points)
 # Projection Matrix
+
 d = 300
 d_increase = False
 d_decrease = False
-anglex_r = False
+
+anglex_r = ''
+angley_r = ''
+anglez_r = ''
+
+auto = False
 
 clock = pygame.time.Clock()
 pygame.font.init()
@@ -85,32 +93,79 @@ while True:
                 d_increase = True
             if event.key == pygame.K_s:
                 d_decrease = True
-            if event.key == pygame.K_DOWN:
-                anglex_r = True
+
+            if event.key == pygame.K_i:
+                anglex_r = 'clock'
+            if event.key == pygame.K_k:
+                anglex_r = 'counter'
+            if event.key == pygame.K_l:
+                angley_r = 'clock'
+            if event.key == pygame.K_j:
+                angley_r = 'counter'
+            if event.key == pygame.K_u:
+                anglez_r = 'clock'
+            if event.key == pygame.K_o:
+                anglez_r = 'counter'
+
+            if event.key == pygame.K_SPACE:
+                auto = True
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_w:
                 d_increase = False
             if event.key == pygame.K_s:
                 d_decrease = False
-            if event.key == pygame.K_DOWN:
-                anglex_r = False
+            if event.key == pygame.K_i:
+                anglex_r = ''
+            if event.key == pygame.K_k:
+                anglex_r = ''
+            if event.key == pygame.K_l:
+                angley_r = ''
+            if event.key == pygame.K_j:
+                angley_r = ''
+            if event.key == pygame.K_u:
+                anglez_r = ''
+            if event.key == pygame.K_o:
+                anglez_r = ''
+
+            if event.key == pygame.K_SPACE:
+                auto = False
+
+        if event.type == pygame.MOUSEWHEEL:
+            if event.y > 0:
+                d += 40
+            elif event.y < 0:
+                d -= 40
+
 
     if d_increase:
         d += 5
     if d_decrease and d > 0:
         d -= 5
+    if d<=0:
+        d = 5
 
-    if anglex_r:
+    if anglex_r == 'clock' or auto:
         anglex += 0.02 
+    if anglex_r == 'counter':
+        anglex -= 0.02 
 
-    if d != 0:
-        T = np.array([
-            [1, 0, 0, 0],
-            [0, 1, 0, 0],
-            [0, 0, 0, -d],
-            [0, 0, -1/d, 0],
-            ])
+    if angley_r == 'clock' or auto:
+        angley += 0.02
+    if angley_r == 'counter':
+        angley -= 0.02
+
+    if anglez_r == 'clock' or auto:
+        anglez += 0.02
+    if anglez_r == 'counter':
+        anglez -= 0.02
+
+    T = np.array([
+        [1, 0, 0, 0],
+        [0, 1, 0, 0],
+        [0, 0, 0, -d],
+        [0, 0, -1/d, 0],
+        ])
 
     rotate_x = np.array([
         [1, 0, 0, 0],
@@ -120,15 +175,15 @@ while True:
     ])
 
     rotate_y = np.array([
-        [cos(angle), 0, sin(angle), 0],
+        [cos(angley), 0, sin(angley), 0],
         [0, 1, 0, 0],
-        [-sin(angle), 0, cos(angle), 0],
+        [-sin(angley), 0, cos(angley), 0],
         [0, 0, 0, 1],
     ])
 
     rotate_z = np.array([
-        [cos(angle), -sin(angle), 0, 0],
-        [sin(angle), cos(angle), 0, 0],
+        [cos(anglez), -sin(anglez), 0, 0],
+        [sin(anglez), cos(anglez), 0, 0],
         [0, 0, 1, 0],
         [0, 0, 0, 1],
     ])
@@ -138,7 +193,7 @@ while True:
     screen.fill(BLACK)
     screen.blit(text_surface, text_surface.get_rect(center = screen.get_rect().center))
 
-    R = rotate_x#@rotate_y@rotate_z # Prepara Matriz de Rotacao.
+    R = rotate_x@rotate_y@rotate_z # Prepara Matriz de Rotacao.
     z_deslocate = 3 # distancia do cubo.
     Tz = np.array(([1,0,0,0],[0,1,0,0],[0,0,1,z_deslocate],[0,0,0,1])) # matriz que aplica uma transformacao em z, o que adiciona uma variacao de "profundidade".
     transl = np.array([ [1,0,0, width/2], [0,1,0,height/2], [0,0,1,0], [0,0,0,1] ]) # translacao para o meio da tela
