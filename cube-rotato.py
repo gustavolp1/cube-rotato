@@ -93,15 +93,8 @@ while True:
 
     if d_increase:
         d += 0.02
-    if d_decrease and d >= 0:
+    if d_decrease and d >= 0:  
         d -= 0.02
-
-    projmatrix = np.array([
-        [1, 0, 0, 0],
-        [0, 1, 0, 0],
-        [0, 0, 0, -d],
-        [0, 0, -1/d, 0],
-        ])
 
     rotate_x = np.array([
         [1, 0, 0, 0],
