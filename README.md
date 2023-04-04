@@ -121,18 +121,12 @@ $$
 O segundo componente será uma matriz comum de translação em Z, que definirá a distância aparente do cubo em relação a tela do computador, visto que Z será nosso eixo de profundidade:
 
 $$
-T =
-
+P = 
 \begin{bmatrix}
-
 1 & 0 & 0 & 0 \\
-
 0 & 1 & 0 & 0 \\
-
-0 & 0 & 1 & D_z \\
-
-0 & 0 & 0 & 1
-
+0 & 0 & 0 & -d \\
+0 & 0 & -1/d & 0
 \end{bmatrix}
 $$
 
@@ -141,7 +135,18 @@ Este componente estará multiplicando a matriz de Rotação diretamente, visto q
 
 - Projeção:
         
-A matriz de projeção será a responsável em projetar nosso ponto tridimensional em duas dimensões. Ela leva em consideração a distância focal em relação ao objeto, representada por `d`.
+A matriz de projeção será a responsável em projetar nossos pontos tridimensionais em duas dimensões. Ela leva em consideração a distância focal em relação ao objeto, representada por `d`.
+
+$$
+P =
+\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & -d \\
+0 & 0 & -1/d & 1
+\end{bmatrix}
+$$
+
 
 - Traslação em x e y :
     
