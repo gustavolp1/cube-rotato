@@ -66,6 +66,8 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
         \end{bmatrix}
         $$
 
+    Nosso objetivo será criar uma matriz generalizada T que faz todas as transformações necessárias nos pontos ao realizarmos uma multiplicação matricial. Isso será feito a seguir.
+
 
 - ## Definindo a transformação :
     - Rotação :

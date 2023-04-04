@@ -51,7 +51,6 @@ for x in (1, -1):
             points.append([x, y, z, 1])
 
 points = np.array(points)
-print(points)
 
 d = 300
 d_increase = False
