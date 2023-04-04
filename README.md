@@ -100,7 +100,7 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
         0 & 0 & 0 & 1
         \end{bmatrix}
         $$
-        Por fim, as multiplicamos entre sí para obtermos uma única matriz de rotação para todas as dimensões envolvidas :
+        Por fim, as multiplicamos entre si para obtermos uma única matriz de rotação para todas as dimensões envolvidas :
         $$
         R = R_xR_yR_z
         $$
@@ -121,6 +121,12 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
 
         \end{bmatrix}
         $$
-    - A matriz T :
+    - Matriz T:
+
+    Com todas as matrizes anteriores, obtemos uma matriz de transformação T na quando as multiplicamos na ordem correta. Ou seja:
+    $$
+    T = T_xyPT_zR
+    $$
+
 
 Referência : Notebook 4 de Algebra Linear, explicação e exemplo elaborados pelo Professor Tiago, 2023.
