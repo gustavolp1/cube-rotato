@@ -42,8 +42,6 @@ angle = 0
 anglex = 0
 angley = 0
 anglez = 0
-#circle_pos = [width/2, height/2]
-circle_pos = [0, 0]
 
 # Set up the points
 points = []
@@ -53,11 +51,6 @@ for x in (1, -1):
             points.append([x, y, z, 1])
 
 points = np.array(points)
-
-# Create projection points array
-projected_points = [[n, n] for n in range(len(points))]
-#print(projected_points)
-# Projection Matrix
 
 d = 300
 d_increase = False
@@ -199,8 +192,8 @@ while True:
     R = rotate_x@rotate_y@rotate_z # Prepara Matriz de Rotacao.
     z_deslocate = 3 # distancia do cubo.
     Tz = np.array(([1,0,0,0],[0,1,0,0],[0,0,1,z_deslocate],[0,0,0,1])) # matriz que aplica uma transformacao em z, o que adiciona uma variacao de "profundidade".
-    transl = np.array([ [1,0,0, width/2], [0,1,0,height/2], [0,0,1,0], [0,0,0,1] ]) # translacao para o meio da tela
-    T = transl@T@Tz@R # preparando a matriz de transformacao;
+    Txy = np.array([ [1,0,0, width/2], [0,1,0,height/2], [0,0,1,0], [0,0,0,1] ]) # translacao para o meio da tela
+    T = Txy@T@Tz@R # preparando a matriz de transformacao;
     # primeiro multiplicamos a matriz R por Tz para ajustarmos a posicao do cubo de nosso ponto de referencia'
     # depois passamos para o mundo 2d e por ultimo aplicamos a translacao para colocar o cubo no centro da tela
     d_points = T@(points).T
