@@ -1,6 +1,6 @@
 # cube-rotato
 
-Pedro Antônio Silva e Gustavo Lindenberg Pacheco
+`Pedro Antônio Silva e Gustavo Lindenberg Pacheco`
 
 https://github.com/gustavolp1/cube-rotato
 
@@ -26,14 +26,17 @@ https://github.com/gustavolp1/cube-rotato
 
 Para inicializar o cubo, apenas rode o arquivo "cube-rotato.py" na sua IDE de preferência. Uma vez com o programa aberto, você pode usar os seguintes comandos no teclado:
 
-W/S - Gira o cubo no eixo X, em sentidos opostos dependendo do botão;
-A/D - Gira o cubo no eixo Y, em sentidos opostos dependendo do botão;
-Q/E - Gira o cubo no eixo Z, em sentidos opostos dependendo do botão;
+`W/S` - Gira o cubo no eixo X, em sentidos opostos dependendo do botão;
 
-I/O - Aumentam e diminuem a distância focal, respectivamente;
-Roda do mouse - Aumenta ou diminui a distância focal;
+`A/D` - Gira o cubo no eixo Y, em sentidos opostos dependendo do botão;
 
-Espaço - Aumenta o ângulo do cubo em todos os eixos simultaneamente enquanto é apertado.
+`Q/E` - Gira o cubo no eixo Z, em sentidos opostos dependendo do botão;
+
+`I/O` - Aumentam e diminuem a distância focal, respectivamente;
+
+`Roda do mouse` - Aumenta ou diminui a distância focal;
+
+`Espaço` - Aumenta o ângulo do cubo em todos os eixos simultaneamente enquanto é apertado.
 
 ## Modelo Matemático
 
@@ -47,21 +50,21 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
         pontos =
         \begin{bmatrix}
 
-        1, 1, 1, 1  \\
+        1 & 1 & 1 & 1  \\
 
-        1, 1, -1, 1 \\
+        1 & 1 & -1 & 1 \\
 
-        1, -1, 1, 1 \\
+        1 & -1 & 1 & 1 \\
 
-        1, -1, -1, 1 \\
+        1 & -1 & -1 & 1 \\
 
-        -1, 1, 1, 1 \\
+        -1 & 1 & 1 & 1 \\
 
-        -1, 1, -1, 1 \\
+        -1 & 1 & -1 & 1 \\
 
-        -1, -1, 1, 1 \\
+        -1 & -1 & 1 & 1 \\
 
-        -1, -1, -1, 1 \\
+        -1 & -1 & -1 & 1 \\
 
         \end{bmatrix}
         $$
@@ -70,7 +73,7 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
 
 
 - ## Definindo a transformação :
-    ### Note que :
+    ### Note que:
     Assumimos a distribuição dos eixos de pontos no seguinte formato para as matrizes de transformação :
     $$
         P = \begin{bmatrix}
@@ -86,7 +89,7 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
 
         O primeiro componente de nossa matriz T será o componente de rotação, constituido de três matrizes que representam uma rotação de $\theta$ graus nos eixos x,y,z.
 
-        Todas foram previamente adaptadas para rotacionar vetores de três dimensões e comportar uma dimensão a mais, que guarda uma variável de ajuste comumente usada para representação de objetos 3d (mais detalhes na explicação da matriz T).
+        Todas foram previamente adaptadas para rotacionar vetores de três dimensões e comportar uma dimensão a mais, que guarda uma variável de ajuste comumente usada para representação de objetos tridimensionais (mais detalhes na explicação da matriz T).
 
         O ângulo $\theta$ é configurado manualmente no código para cada uma dessas matrizes, permitindo rotação em qualquer eixo.
 
@@ -139,7 +142,10 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
         - Com Dz representando o deslocamento no eixo z por iteração do código/comando.
         Este componente estará multiplicando a matriz de Rotação diretamente, visto que altera a visualização 3D emulada dos pontos.
 
-    - Transformação :
+    - Projeção:
+        
+        A matriz de projeção será a responsável em projetar nosso ponto tridimensional em duas dimensões. Ela leva em consideração a distância focal em relação ao objeto, representada por `d`.
+
     
     - Traslação em x e y :
         $$
