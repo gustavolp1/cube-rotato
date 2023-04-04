@@ -37,10 +37,35 @@ Espaço - Aumenta o ângulo do cubo em todos os eixos simultaneamente enquanto �
 
 ## Modelo Matemático
 
-Antes de começarmos a elaborar equações, precisamos antes definir como repesentaremos os pontos do nosso cubo e também definir quais alterações serão necessárias para representa-lo em 2D e move-lo:
+Antes de começarmos a elaborar equações, precisamos antes definir como repesentaremos os pontos do nosso cubo, além de definir quais alterações serão necessárias para representá-lo em 2D e realizar rotações.
 
 - ## Definindo os Pontos :
-    - primeiro definimos um cubo de dimensões arbitrárias,
+    - Primeiro definimos um cubo de dimensões arbitrárias. Para isso, criamos oito pontos (correspondentes aos vértices do cubo), com um valor x, y e z, de forma que cada ponto têm sua distância aos três pontos adjacentes sendo igual, o que corresponde a um cubo.
+    Isso nos dá uma matriz criada em NumPy, seguindo o seguinte modelo:
+        $$
+                
+        pontos =
+        \begin{bmatrix}
+
+        1, 1, 1, 1  \\
+
+        1, 1, -1, 1 \\
+
+        1, -1, 1, 1 \\
+
+        1, -1, -1, 1 \\
+
+        -1, 1, 1, 1 \\
+
+        -1, 1, -1, 1 \\
+
+        -1, -1, 1, 1 \\
+
+        -1, -1, -1, 1 \\
+
+        \end{bmatrix}
+        $$
+
 
 - ## Definindo a transformação :
     - Rotação :
