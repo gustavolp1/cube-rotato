@@ -46,28 +46,19 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
     - Primeiro definimos um cubo de dimensões arbitrárias. Para isso, criamos oito pontos (correspondentes aos vértices do cubo), com um valor x, y , z e 1, de forma que cada ponto têm sua distância aos três pontos adjacentes sendo igual, além de uma dimensão a mais para realizarmos calculos mais para frente, o que corresponde a um cubo.
     Isso nos dá uma matriz criada em NumPy, seguindo o seguinte modelo:
 
-        $$
-        pontos =
-        \begin{bmatrix}
+$$
+\begin{bmatrix}
+1 & 1 & 1 & 1 \\
+1 & 1 & -1 & 1 \\
+1 & -1 & 1 & 1 \\
+1 & -1 & -1 & 1 \\
+-1 & 1 & 1 & 1 \\
+-1 & 1 & -1 & 1 \\
+-1 & -1 & 1 & 1 \\
+-1 & -1 & -1 & 1
+\end{bmatrix}
+$$
 
-        1 & 1 & 1 & 1 \\
-
-        1 & 1 & -1 & 1 \\
-
-        1 & -1 & 1 & 1 \\
-
-        1 & -1 & -1 & 1 \\
-
-        -1 & 1 & 1 & 1 \\
-
-        -1 & 1 & -1 & 1 \\
-
-        -1 & -1 & 1 & 1 \\
-
-        -1 & -1 & -1 & 1 \\
-
-        \end{bmatrix}
-        $$
 
     Nosso objetivo será criar uma matriz generalizada T que faz todas as transformações necessárias nos pontos ao realizarmos uma multiplicação matricial. Isso será feito a seguir.
 
