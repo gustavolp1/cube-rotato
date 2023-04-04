@@ -72,6 +72,10 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
         0 & 0 & 0 & 1
         \end{bmatrix}
         $$
+        Por fim, as multiplicamos entre sí para obtermos uma única matriz de rotação para todas as dimensões envolvidas :
+        $$
+        R = R_xR_yR_z
+        $$
 
     - Translação em Z - Profundidade :
     - Transformação :
