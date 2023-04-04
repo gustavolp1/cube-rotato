@@ -77,9 +77,9 @@ $$
 
 Com W não sendo considerado como um eixo e usado apenas para o calculo final.
     
-    - Rotação :
+- Rotação :
 
-        O primeiro componente de nossa matriz T será o componente de rotação, constituido de três matrizes que representam uma rotação de $\theta$ graus nos eixos x,y,z.
+    O primeiro componente de nossa matriz T será o componente de rotação, constituido de três matrizes que representam uma rotação de $\theta$ graus nos eixos x,y,z.
 
         Todas foram previamente adaptadas para rotacionar vetores de três dimensões e comportar uma dimensão a mais, que guarda uma variável de ajuste comumente usada para representação de objetos tridimensionais (mais detalhes na explicação da matriz T).
 
