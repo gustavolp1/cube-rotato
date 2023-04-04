@@ -125,12 +125,12 @@ P =
 \begin{bmatrix}
 1 & 0 & 0 & 0 \\
 0 & 1 & 0 & 0 \\
-0 & 0 & 0 & -d \\
-0 & 0 & -1/d & 0
+0 & 0 & 1 & Dz \\
+0 & 0 & 0 & 1
 \end{bmatrix}
 $$
 
-- Com Dz representando o deslocamento no eixo z por iteração do código/comando.
+Com Dz representando o deslocamento no eixo z por iteração do código/comando.
 Este componente estará multiplicando a matriz de Rotação diretamente, visto que altera a visualização 3D emulada dos pontos.
 
 - Projeção:
@@ -142,13 +142,13 @@ P =
 \begin{bmatrix}
 1 & 0 & 0 & 0 \\
 0 & 1 & 0 & 0 \\
-0 & 0 & 1 & -d \\
-0 & 0 & -1/d & 1
+0 & 0 & 0 & -d \\
+0 & 0 & -1/d & 0
 \end{bmatrix}
 $$
 
 
-- Traslação em x e y :
+- Traslação em x e y:
     
 Depois de aplicada a projeção para o plano 2D (Nossa tela) basta trasladarmos nosso cubo para uma posição que possamos visualiza-lo melhor, através de uma matriz de traslação comum redimensionada para 3 dimensões e com uma dimensão extra em padrão identidade.
 
