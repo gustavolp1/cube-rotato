@@ -93,15 +93,13 @@ R_x = \begin{bmatrix}
 0 & 0 & 0 & 1
 \end{bmatrix}
 \hspace{0.5in}
-
 R_y = \begin{bmatrix}
 \cos(\theta) & 0 & \sin(\theta) & 0 \\
 0 & 1 & 0 & 0 \\
 -\sin(\theta) & 0 & \cos(\theta) & 0 \\
 0 & 0 & 0 & 1
-\end{bmatrix}\\
-\hspace{0.5in}\\
-
+\end{bmatrix}
+\hspace{0.5in}
 R_z = \begin{bmatrix}
 \cos(\theta) & - \sin(\theta) & 0 & 0 \\
 \sin(\theta) & \cos(\theta) & 0 & 0 \\
@@ -154,17 +152,11 @@ Depois de aplicada a projeção para o plano 2D (Nossa tela) basta trasladarmos 
 
 $$
 T =
-
 \begin{bmatrix}
-
 1 & 0 & 0 & H/2 \\
-
 0 & 1 & 0 & W/2 \\
-
 0 & 0 & 1 & 0 \\
-
 0 & 0 & 0 & 1
-
 \end{bmatrix}
 $$
 
