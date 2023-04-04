@@ -40,7 +40,7 @@ Espaço - Aumenta o ângulo do cubo em todos os eixos simultaneamente enquanto �
 Antes de começarmos a elaborar equações, precisamos antes definir como repesentaremos os pontos do nosso cubo, além de definir quais alterações serão necessárias para representá-lo em 2D e realizar rotações.
 
 - ## Definindo os Pontos :
-    - Primeiro definimos um cubo de dimensões arbitrárias. Para isso, criamos oito pontos (correspondentes aos vértices do cubo), com um valor x, y , z e 1, de forma que cada ponto têm sua distância aos três pontos adjacentes sendo igual e temos uma dimensão a mais para realizarmos calculos mais para frente, o que corresponde a um cubo.
+    - Primeiro definimos um cubo de dimensões arbitrárias. Para isso, criamos oito pontos (correspondentes aos vértices do cubo), com um valor x, y , z e 1, de forma que cada ponto têm sua distância aos três pontos adjacentes sendo igual, além de uma dimensão a mais para realizarmos calculos mais para frente, o que corresponde a um cubo.
     Isso nos dá uma matriz criada em NumPy, seguindo o seguinte modelo:
         $$
                 
@@ -84,11 +84,12 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
     
     - Rotação :
 
-        O primeiro componente de nossa matriz T será o componete de rotação, constituido de três matrizes que representam uma rotação de $\theta$ graus nos eixos x,y,z.
+        O primeiro componente de nossa matriz T será o componente de rotação, constituido de três matrizes que representam uma rotação de $\theta$ graus nos eixos x,y,z.
 
-        Todas foram previamente adaptadas para rotacionar vetores de três dimensões e comportar uma dimensão a mais, que guarda uma variável de ajuste comulmente usada para representação de objetos 3d. (Mais detalhes na explicação da matriz T)
+        Todas foram previamente adaptadas para rotacionar vetores de três dimensões e comportar uma dimensão a mais, que guarda uma variável de ajuste comumente usada para representação de objetos 3d (mais detalhes na explicação da matriz T).
 
-        
+        O ângulo $\theta$ é configurado manualmente no código para cada uma dessas matrizes, permitindo rotação em qualquer eixo.
+
         $$
         R_x = \begin{bmatrix}
         1 & 0 & 0 & 0 \\
@@ -112,7 +113,7 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
         0 & 0 & 0 & 1
         \end{bmatrix}
         $$
-        Por fim, as multiplicamos entre sí para obtermos uma única matriz de rotação para todas as dimensões envolvidas :
+        Por fim, as multiplicamos entre si para obtermos uma única matriz de rotação para todas as dimensões envolvidas :
         $$
         R = R_xR_yR_z
         $$
@@ -152,5 +153,12 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
 
         \end{bmatrix}
         $$
+    - Matriz T:
+
+    Com todas as matrizes anteriores, obtemos uma matriz de transformação T na quando as multiplicamos na ordem correta. Ou seja:
+    $$
+    T = T_xyPT_zR
+    $$
+
 
 Referência : Notebook 4 de Algebra Linear, explicação e exemplo elaborados pelo Professor Tiago, 2023.

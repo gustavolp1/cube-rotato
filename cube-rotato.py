@@ -154,7 +154,7 @@ while True:
     if anglez_r == 'counter':
         anglez -= 0.02
 
-    T = np.array([
+    P = np.array([
         [1, 0, 0, 0],
         [0, 1, 0, 0],
         [0, 0, 0, -d],
@@ -193,7 +193,7 @@ while True:
     z_deslocate = 3 # distancia do cubo.
     Tz = np.array(([1,0,0,0],[0,1,0,0],[0,0,1,z_deslocate],[0,0,0,1])) # matriz que aplica uma transformacao em z, o que adiciona uma variacao de "profundidade".
     Txy = np.array([ [1,0,0, width/2], [0,1,0,height/2], [0,0,1,0], [0,0,0,1] ]) # translacao para o meio da tela
-    T = Txy@T@Tz@R # preparando a matriz de transformacao;
+    T = Txy@P@Tz@R # preparando a matriz de transformacao;
     # primeiro multiplicamos a matriz R por Tz para ajustarmos a posicao do cubo de nosso ponto de referencia'
     # depois passamos para o mundo 2d e por ultimo aplicamos a translacao para colocar o cubo no centro da tela
     d_points = T@(points).T
