@@ -47,11 +47,10 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
     Isso nos dá uma matriz criada em NumPy, seguindo o seguinte modelo:
 
         $$
-                
         pontos =
         \begin{bmatrix}
 
-        1 & 1 & 1 & 1  \\
+        1 & 1 & 1 & 1 \\
 
         1 & 1 & -1 & 1 \\
 
@@ -68,7 +67,6 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
         -1 & -1 & -1 & 1 \\
 
         \end{bmatrix}
-
         $$
 
     Nosso objetivo será criar uma matriz generalizada T que faz todas as transformações necessárias nos pontos ao realizarmos uma multiplicação matricial. Isso será feito a seguir.
