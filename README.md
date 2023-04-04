@@ -4,6 +4,8 @@ Pedro Antônio Silva e Gustavo Lindenberg Pacheco
 
 https://github.com/gustavolp1/cube-rotato
 
+![](https://github.com/gustavolp1/cube-rotato/cubo-girando.gif)
+
 ## Como instalar e executar
 
 - Instale o Python (https://www.python.org/) em sua máquina. O programa foi desenvolvido especificamente para Windows, portanto não há garantia de que funcionará em outros sistemas operacionais.
