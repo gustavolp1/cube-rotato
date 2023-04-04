@@ -120,7 +120,7 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
 
     - Translação em Z - Profundidade :
 
-        O segundo componente será uma matriz de translação em Z, que definirá a distância aparente do cubo em relação a tela do computador, visto que Z será nosso eixo de profundidade :
+        O segundo componente será uma matriz comum de translação em Z, que definirá a distância aparente do cubo em relação a tela do computador, visto que Z será nosso eixo de profundidade :
         $$
         T =
 
@@ -137,22 +137,27 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
         \end{bmatrix}
         $$
         - Com Dz representando o deslocamento no eixo z por iteração do código/comando.
+        Este componente estará multiplicando a matriz de Rotação diretamente, visto que altera a visualização 3D emulada dos pontos.
 
     - Transformação :
+    
     - Traslação em x e y :
         $$
         T =
 
         \begin{bmatrix}
 
-        1, 0, H/2 \\
+        1 & 0 & 0 & H/2 \\
 
-        0, 1, W/2 \\
+        0 & 1 & 0 & W/2 \\
 
-        0, 0 , 1
+        0 & 0 & 1 & 0 \\
+
+        0 & 0 & 0 & 1
 
         \end{bmatrix}
         $$
+
     - Matriz T:
 
     Com todas as matrizes anteriores, obtemos uma matriz de transformação T na quando as multiplicamos na ordem correta. Ou seja:
