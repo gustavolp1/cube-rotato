@@ -64,16 +64,18 @@ Nosso objetivo será criar uma matriz generalizada T que faz todas as transforma
 
 - ## Definindo a transformação :
     ### Note que:
-    Assumimos a distribuição dos eixos de pontos no seguinte formato para as matrizes de transformação :
-    $$
-        P = \begin{bmatrix}
-        X \\
-        Y \\
-        Z \\
-        W
-        \end{bmatrix}
-    $$
-    Com W não sendo considerado como um eixo e usado apenas para o calculo final.
+Assumimos a distribuição dos eixos de pontos no seguinte formato para as matrizes de transformação:
+
+$$
+P = \begin{bmatrix}
+X \\
+Y \\
+Z \\
+W
+\end{bmatrix}
+$$
+
+Com W não sendo considerado como um eixo e usado apenas para o calculo final.
     
     - Rotação :
 
