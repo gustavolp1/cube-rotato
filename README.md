@@ -70,6 +70,18 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
 
 
 - ## Definindo a transformação :
+    ### Note que :
+    Assumimos a distribuição dos eixos de pontos no seguinte formato para as matrizes de transformação :
+    $$
+        P = \begin{bmatrix}
+        X \\
+        Y \\
+        Z \\
+        W
+        \end{bmatrix}
+    $$
+    Com W não sendo considerado como um eixo e usado apenas para o calculo final.
+    
     - Rotação :
 
         O primeiro componente de nossa matriz T será o componete de rotação, constituido de três matrizes que representam uma rotação de $\theta$ graus nos eixos x,y,z.
@@ -90,8 +102,9 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
         0 & 1 & 0 & 0 \\
         -\sin(\theta) & 0 & \cos(\theta) & 0 \\
         0 & 0 & 0 & 1
-        \end{bmatrix}
-        \hspace{0.5in}
+        \end{bmatrix}\\
+        \hspace{0.5in}\\
+
         R_z = \begin{bmatrix}
         \cos(\theta) & - \sin(\theta) & 0 & 0 \\
         \sin(\theta) & \cos(\theta) & 0 & 0 \\
@@ -105,6 +118,25 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
         $$
 
     - Translação em Z - Profundidade :
+
+        O segundo componente será uma matriz de translação em Z, que definirá a distância aparente do cubo em relação a tela do computador, visto que Z será nosso eixo de profundidade :
+        $$
+        T =
+
+        \begin{bmatrix}
+
+        1 & 0 & 0 & 0 \\
+
+        0 & 1 & 0 & 0 \\
+
+        0 & 0 & 1 & D_z \\
+
+        0 & 0 & 0 & 1
+
+        \end{bmatrix}
+        $$
+        - Com Dz representando o deslocamento no eixo z por iteração do código/comando.
+
     - Transformação :
     - Traslação em x e y :
         $$
@@ -120,6 +152,5 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
 
         \end{bmatrix}
         $$
-    - A matriz T :
 
 Referência : Notebook 4 de Algebra Linear, explicação e exemplo elaborados pelo Professor Tiago, 2023.
