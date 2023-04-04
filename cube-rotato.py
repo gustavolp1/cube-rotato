@@ -1,7 +1,6 @@
 import numpy as np
 import pygame
 from math import *
-import random
 
 def connect_points(i,j,points):
     pygame.draw.line(screen, rainbow_color(color), ((points[i][0]), (points[i][1])), ((points[j][0]), (points[j][1])), 5)
@@ -72,9 +71,10 @@ auto = False
 
 clock = pygame.time.Clock()
 pygame.font.init()
-my_font = pygame.font.SysFont('comic sans', 30)
+my_font = pygame.font.SysFont('impact', 36)
 
-text_surface = my_font.render('cube rotato', True, (255, 255, 255))
+cube_rotato_text = my_font.render('CUBE ROTATO', True, (255, 255, 255))
+bottom_text = my_font.render('BOTTOM TEXT', True, (255, 255, 255))
 
 # Base PyGame loop
 while True:
@@ -89,43 +89,44 @@ while True:
             if event.key == pygame.K_ESCAPE:
                 pygame.quit()
                 exit()
-            if event.key == pygame.K_w:
+            if event.key == pygame.K_i:
                 d_increase = True
-            if event.key == pygame.K_s:
+            if event.key == pygame.K_o:
                 d_decrease = True
 
-            if event.key == pygame.K_i:
+            if event.key == pygame.K_w:
                 anglex_r = 'clock'
-            if event.key == pygame.K_k:
+            if event.key == pygame.K_s:
                 anglex_r = 'counter'
-            if event.key == pygame.K_l:
+            if event.key == pygame.K_d:
                 angley_r = 'clock'
-            if event.key == pygame.K_j:
+            if event.key == pygame.K_a:
                 angley_r = 'counter'
-            if event.key == pygame.K_u:
+            if event.key == pygame.K_e:
                 anglez_r = 'clock'
-            if event.key == pygame.K_o:
+            if event.key == pygame.K_q:
                 anglez_r = 'counter'
 
             if event.key == pygame.K_SPACE:
                 auto = True
 
         if event.type == pygame.KEYUP:
-            if event.key == pygame.K_w:
-                d_increase = False
-            if event.key == pygame.K_s:
-                d_decrease = False
             if event.key == pygame.K_i:
-                anglex_r = ''
-            if event.key == pygame.K_k:
-                anglex_r = ''
-            if event.key == pygame.K_l:
-                angley_r = ''
-            if event.key == pygame.K_j:
-                angley_r = ''
-            if event.key == pygame.K_u:
-                anglez_r = ''
+                d_increase = False
             if event.key == pygame.K_o:
+                d_decrease = False
+
+            if event.key == pygame.K_w:
+                anglex_r = ''
+            if event.key == pygame.K_s:
+                anglex_r = ''
+            if event.key == pygame.K_d:
+                angley_r = ''
+            if event.key == pygame.K_a:
+                angley_r = ''
+            if event.key == pygame.K_e:
+                anglez_r = ''
+            if event.key == pygame.K_q:
                 anglez_r = ''
 
             if event.key == pygame.K_SPACE:
@@ -191,7 +192,9 @@ while True:
     angle += 0.01
 
     screen.fill(BLACK)
-    screen.blit(text_surface, text_surface.get_rect(center = screen.get_rect().center))
+    widthcenter = screen.get_rect().center[0]
+    screen.blit(cube_rotato_text, cube_rotato_text.get_rect(center = (widthcenter, height*0.1)))
+    screen.blit(bottom_text, bottom_text.get_rect(center = (widthcenter, height*0.9)))
 
     R = rotate_x@rotate_y@rotate_z # Prepara Matriz de Rotacao.
     z_deslocate = 3 # distancia do cubo.
