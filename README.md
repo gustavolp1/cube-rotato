@@ -77,94 +77,101 @@ $$
 
 Com W não sendo considerado como um eixo e usado apenas para o calculo final.
     
-- Rotação :
+- Rotação:
 
-    O primeiro componente de nossa matriz T será o componente de rotação, constituido de três matrizes que representam uma rotação de $\theta$ graus nos eixos x,y,z.
+O primeiro componente de nossa matriz T será o componente de rotação, constituido de três matrizes que representam uma rotação de $\theta$ graus nos eixos x,y,z.
 
-        Todas foram previamente adaptadas para rotacionar vetores de três dimensões e comportar uma dimensão a mais, que guarda uma variável de ajuste comumente usada para representação de objetos tridimensionais (mais detalhes na explicação da matriz T).
+Todas foram previamente adaptadas para rotacionar vetores de três dimensões e comportar uma dimensão a mais, que guarda uma variável de ajuste comumente usada para representação de objetos tridimensionais (mais detalhes na explicação da matriz T).
 
-        O ângulo $\theta$ é configurado manualmente no código para cada uma dessas matrizes, permitindo rotação em qualquer eixo.
+O ângulo $\theta$ é configurado manualmente no código para cada uma dessas matrizes, permitindo rotação em qualquer eixo.
 
-        $$
-        R_x = \begin{bmatrix}
-        1 & 0 & 0 & 0 \\
-        0 & \cos(\theta) & -\sin(\theta) & 0 \\
-        0 & \sin(\theta) & \cos(\theta) & 0 \\
-        0 & 0 & 0 & 1
-        \end{bmatrix}
-        \hspace{0.5in}
-        R_y = \begin{bmatrix}
-        \cos(\theta) & 0 & \sin(\theta) & 0 \\
-        0 & 1 & 0 & 0 \\
-        -\sin(\theta) & 0 & \cos(\theta) & 0 \\
-        0 & 0 & 0 & 1
-        \end{bmatrix}\\
-        \hspace{0.5in}\\
+$$
+R_x = \begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & \cos(\theta) & -\sin(\theta) & 0 \\
+0 & \sin(\theta) & \cos(\theta) & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+\hspace{0.5in}
 
-        R_z = \begin{bmatrix}
-        \cos(\theta) & - \sin(\theta) & 0 & 0 \\
-        \sin(\theta) & \cos(\theta) & 0 & 0 \\
-        0 & 0 & 1 & 0 \\
-        0 & 0 & 0 & 1
-        \end{bmatrix}
-        $$
-        Por fim, as multiplicamos entre si para obtermos uma única matriz de rotação para todas as dimensões envolvidas :
-        $$
-        R = R_xR_yR_z
-        $$
+R_y = \begin{bmatrix}
+\cos(\theta) & 0 & \sin(\theta) & 0 \\
+0 & 1 & 0 & 0 \\
+-\sin(\theta) & 0 & \cos(\theta) & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}\\
+\hspace{0.5in}\\
 
-    - Translação em Z - Profundidade :
+R_z = \begin{bmatrix}
+\cos(\theta) & - \sin(\theta) & 0 & 0 \\
+\sin(\theta) & \cos(\theta) & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+$$
 
-        O segundo componente será uma matriz comum de translação em Z, que definirá a distância aparente do cubo em relação a tela do computador, visto que Z será nosso eixo de profundidade :
-        $$
-        T =
+Por fim, as multiplicamos entre si para obtermos uma única matriz de rotação para todas as dimensões envolvidas:
 
-        \begin{bmatrix}
+$$
+R = R_xR_yR_z
+$$
 
-        1 & 0 & 0 & 0 \\
+- Translação em Z (Profundidade):
 
-        0 & 1 & 0 & 0 \\
+O segundo componente será uma matriz comum de translação em Z, que definirá a distância aparente do cubo em relação a tela do computador, visto que Z será nosso eixo de profundidade:
 
-        0 & 0 & 1 & D_z \\
+$$
+T =
 
-        0 & 0 & 0 & 1
+\begin{bmatrix}
 
-        \end{bmatrix}
-        $$
-        - Com Dz representando o deslocamento no eixo z por iteração do código/comando.
-        Este componente estará multiplicando a matriz de Rotação diretamente, visto que altera a visualização 3D emulada dos pontos.
+1 & 0 & 0 & 0 \\
 
-    - Projeção:
+0 & 1 & 0 & 0 \\
+
+0 & 0 & 1 & D_z \\
+
+0 & 0 & 0 & 1
+
+\end{bmatrix}
+$$
+
+- Com Dz representando o deslocamento no eixo z por iteração do código/comando.
+Este componente estará multiplicando a matriz de Rotação diretamente, visto que altera a visualização 3D emulada dos pontos.
+
+- Projeção:
         
-        A matriz de projeção será a responsável em projetar nosso ponto tridimensional em duas dimensões. Ela leva em consideração a distância focal em relação ao objeto, representada por `d`.
+A matriz de projeção será a responsável em projetar nosso ponto tridimensional em duas dimensões. Ela leva em consideração a distância focal em relação ao objeto, representada por `d`.
 
+- Traslação em x e y :
     
-    - Traslação em x e y :
-    
-        Depois de aplicada a projeção para o plano 2D (Nossa tela) basta trasladarmos nosso cubo para uma posição que possamos visualiza-lo melhor, através de uma matriz de traslação comum redimensionada para 3 dimensões e com uma dimensão extra em padrão identidade.
-        $$
-        T =
+Depois de aplicada a projeção para o plano 2D (Nossa tela) basta trasladarmos nosso cubo para uma posição que possamos visualiza-lo melhor, através de uma matriz de traslação comum redimensionada para 3 dimensões e com uma dimensão extra em padrão identidade.
 
-        \begin{bmatrix}
+$$
+T =
 
-        1 & 0 & 0 & H/2 \\
+\begin{bmatrix}
 
-        0 & 1 & 0 & W/2 \\
+1 & 0 & 0 & H/2 \\
 
-        0 & 0 & 1 & 0 \\
+0 & 1 & 0 & W/2 \\
 
-        0 & 0 & 0 & 1
+0 & 0 & 1 & 0 \\
 
-        \end{bmatrix}
-        $$
+0 & 0 & 0 & 1
 
-    - Matriz T:
+\end{bmatrix}
+$$
 
-        Com todas as matrizes anteriores, obtemos uma matriz de transformação T quando as multiplicamos na ordem correta. Ou seja:
-        $$
-        T = T_xPT_zR
-        $$
-        Que rotaciona, distância/aproxima e translada nosso cubo de uma vez!
+- Matriz T:
+
+Com todas as matrizes anteriores, obtemos uma matriz de transformação T quando as multiplicamos na ordem correta. Ou seja:
+
+$$
+T = T_xPT_zR
+$$
+
+Que rotaciona, distância/aproxima e translada nosso cubo de uma vez!
 
 
 Referência : Notebook 4 de Algebra Linear, explicação e exemplo elaborados pelo Professor Tiago, 2023.
