@@ -40,7 +40,7 @@ Espaço - Aumenta o ângulo do cubo em todos os eixos simultaneamente enquanto �
 Antes de começarmos a elaborar equações, precisamos antes definir como repesentaremos os pontos do nosso cubo, além de definir quais alterações serão necessárias para representá-lo em 2D e realizar rotações.
 
 - ## Definindo os Pontos :
-    - Primeiro definimos um cubo de dimensões arbitrárias. Para isso, criamos oito pontos (correspondentes aos vértices do cubo), com um valor x, y e z, de forma que cada ponto têm sua distância aos três pontos adjacentes sendo igual, o que corresponde a um cubo.
+    - Primeiro definimos um cubo de dimensões arbitrárias. Para isso, criamos oito pontos (correspondentes aos vértices do cubo), com um valor x, y , z e 1, de forma que cada ponto têm sua distância aos três pontos adjacentes sendo igual e temos uma dimensão a mais para realizarmos calculos mais para frente, o que corresponde a um cubo.
     Isso nos dá uma matriz criada em NumPy, seguindo o seguinte modelo:
         $$
                 
