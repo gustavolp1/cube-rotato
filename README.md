@@ -4,7 +4,7 @@ Pedro Antônio Silva e Gustavo Lindenberg Pacheco
 
 https://github.com/gustavolp1/cube-rotato
 
-![](/cubo_girando.gif)
+![](/rotation_demo.gif)
 
 ## Como instalar e executar
 
