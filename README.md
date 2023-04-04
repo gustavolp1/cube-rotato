@@ -37,49 +37,43 @@ Espaço - Aumenta o ângulo do cubo em todos os eixos simultaneamente enquanto �
 
 ## Modelo Matemático
 
-Matriz exemplo
+Antes de começarmos a elaborar equações, precisamos definir algumas matrizes :
+    - Assumindo que teremos uma matriz base 4x8 que repesenta as posições,
 
-$$
+- ## Definindo os Pontos :
+    - primeiro definimos um cubro de dimensões arbitrárias,
 
-T =
+- ## Definindo a transformação :
+    - Rotação :
+        $$
+                
+        R =
+        \begin{bmatrix}
 
-\begin{bmatrix}
+        cos(speed), -np.sin(speed), 0 \\
 
-1, 0, -H/2 \\
+        np.sin(speed), np.cos(speed), 0 \\
 
-0, 1, -W/2 \\
+        0, 0,1
 
-0, 0 , 1
+        \end{bmatrix}
+        $$
 
-\end{bmatrix}
-R =
-\begin{bmatrix}
+    - Translação em Z - Profundidade :
+    - Transformação :
+    - Traslação em x e y :
+        $$
+        T =
 
-cos(speed), -np.sin(speed), 0 \\
+        \begin{bmatrix}
 
-np.sin(speed), np.cos(speed), 0 \\
+        1, 0, H/2 \\
 
-0, 0,1
+        0, 1, W/2 \\
 
-\end{bmatrix}
-T2 =
-\begin{bmatrix}
+        0, 0 , 1
 
-1, 0, height/2 \\
-
-0, 1, width/2 \\
-
-0, 0,1
-
-\end{bmatrix}
-
-$$
-
-### Seção exemplo
-
-Formula exemplo
-$$
-X_o = A^{-1} X_d
-$$
+        \end{bmatrix}
+        $$
 
 Referência : Notebook 4 de Algebra Linear, explicação e exemplo elaborados pelo Professor Tiago, 2023.
