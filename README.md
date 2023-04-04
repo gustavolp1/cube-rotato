@@ -37,11 +37,10 @@ Espaço - Aumenta o ângulo do cubo em todos os eixos simultaneamente enquanto �
 
 ## Modelo Matemático
 
-Antes de começarmos a elaborar equações, precisamos definir algumas matrizes :
-    - Assumindo que teremos uma matriz base 4x8 que repesenta as posições,
+Antes de começarmos a elaborar equações, precisamos antes definir como repesentaremos os pontos do nosso cubo e também definir quais alterações serão necessárias para representa-lo em 2D e move-lo:
 
 - ## Definindo os Pontos :
-    - primeiro definimos um cubro de dimensões arbitrárias,
+    - primeiro definimos um cubo de dimensões arbitrárias,
 
 - ## Definindo a transformação :
     - Rotação :
@@ -75,5 +74,6 @@ Antes de começarmos a elaborar equações, precisamos definir algumas matrizes 
 
         \end{bmatrix}
         $$
+    - A matriz T :
 
 Referência : Notebook 4 de Algebra Linear, explicação e exemplo elaborados pelo Professor Tiago, 2023.
