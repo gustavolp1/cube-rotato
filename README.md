@@ -43,8 +43,8 @@ Para inicializar o cubo, apenas rode o arquivo "cube-rotato.py" na sua IDE de pr
 Antes de começarmos a elaborar equações, precisamos antes definir como repesentaremos os pontos do nosso cubo, além de definir quais alterações serão necessárias para representá-lo em 2D e realizar rotações.
 
 - ## Definindo os Pontos :
-    - Primeiro definimos um cubo de dimensões arbitrárias. Para isso, criamos oito pontos (correspondentes aos vértices do cubo), com um valor x, y , z e 1, de forma que cada ponto têm sua distância aos três pontos adjacentes sendo igual, além de uma dimensão a mais para realizarmos calculos mais para frente, o que corresponde a um cubo.
-    Isso nos dá uma matriz criada em NumPy, seguindo o seguinte modelo:
+Primeiro definimos um cubo de dimensões arbitrárias. Para isso, criamos oito pontos (correspondentes aos vértices do cubo), com um valor x, y , z e 1, de forma que cada ponto têm sua distância aos três pontos adjacentes sendo igual, além de uma dimensão a mais para realizarmos calculos mais para frente, o que corresponde a um cubo.
+Isso nos dá uma matriz criada em NumPy, seguindo o seguinte modelo:
 
 $$
 \begin{bmatrix}
@@ -59,7 +59,7 @@ $$
 \end{bmatrix}
 $$
 
-    - Nosso objetivo será criar uma matriz generalizada T que faz todas as transformações necessárias nos pontos ao realizarmos uma multiplicação matricial. Isso será feito a seguir.
+Nosso objetivo será criar uma matriz generalizada T que faz todas as transformações necessárias nos pontos ao realizarmos uma multiplicação matricial. Isso será feito a seguir.
 
 
 - ## Definindo a transformação :
