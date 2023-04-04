@@ -44,17 +44,32 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
 
 - ## Definindo a transformação :
     - Rotação :
+
+        O primeiro componente de nossa matriz T será o componete de rotação, constituido de três matrizes que representam uma rotação de $\theta$ graus nos eixos x,y,z.
+
+        Todas foram previamente adaptadas para rotacionar vetores de três dimensões e comportar uma dimensão a mais, que guarda uma variável de ajuste comulmente usada para representação de objetos 3d. (Mais detalhes na explicação da matriz T)
+
+        
         $$
-                
-        R =
-        \begin{bmatrix}
-
-        cos(speed), -np.sin(speed), 0 \\
-
-        np.sin(speed), np.cos(speed), 0 \\
-
-        0, 0,1
-
+        R_x = \begin{bmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & \cos(\theta) & -\sin(\theta) & 0 \\
+        0 & \sin(\theta) & \cos(\theta) & 0 \\
+        0 & 0 & 0 & 1
+        \end{bmatrix}
+        \hspace{0.5in}
+        R_y = \begin{bmatrix}
+        \cos(\theta) & 0 & \sin(\theta) & 0 \\
+        0 & 1 & 0 & 0 \\
+        -\sin(\theta) & 0 & \cos(\theta) & 0 \\
+        0 & 0 & 0 & 1
+        \end{bmatrix}
+        \hspace{0.5in}
+        R_z = \begin{bmatrix}
+        \cos(\theta) & - \sin(\theta) & 0 & 0 \\
+        \sin(\theta) & \cos(\theta) & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
         \end{bmatrix}
         $$
 
