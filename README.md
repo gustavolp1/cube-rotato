@@ -150,6 +150,8 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
 
     
     - Traslação em x e y :
+    
+        Depois de aplicada a projeção para o plano 2D (Nossa tela) basta trasladarmos nosso cubo para uma posição que possamos visualiza-lo melhor, através de uma matriz de traslação comum redimensionada para 3 dimensões e com uma dimensão extra em padrão identidade.
         $$
         T =
 
@@ -168,10 +170,11 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
 
     - Matriz T:
 
-        Com todas as matrizes anteriores, obtemos uma matriz de transformação T na quando as multiplicamos na ordem correta. Ou seja:
+        Com todas as matrizes anteriores, obtemos uma matriz de transformação T quando as multiplicamos na ordem correta. Ou seja:
         $$
         T = T_xPT_zR
         $$
+        Que rotaciona, distância/aproxima e translada nosso cubo de uma vez!
 
 
 Referência : Notebook 4 de Algebra Linear, explicação e exemplo elaborados pelo Professor Tiago, 2023.
