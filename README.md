@@ -1,6 +1,6 @@
 # cube-rotato
 
-Pedro Antônio Silva e Gustavo Lindenberg Pacheco
+`Pedro Antônio Silva e Gustavo Lindenberg Pacheco`
 
 https://github.com/gustavolp1/cube-rotato
 
@@ -26,14 +26,17 @@ https://github.com/gustavolp1/cube-rotato
 
 Para inicializar o cubo, apenas rode o arquivo "cube-rotato.py" na sua IDE de preferência. Uma vez com o programa aberto, você pode usar os seguintes comandos no teclado:
 
-W/S - Gira o cubo no eixo X, em sentidos opostos dependendo do botão;
-A/D - Gira o cubo no eixo Y, em sentidos opostos dependendo do botão;
-Q/E - Gira o cubo no eixo Z, em sentidos opostos dependendo do botão;
+`W/S` - Gira o cubo no eixo X, em sentidos opostos dependendo do botão;
 
-I/O - Aumentam e diminuem a distância focal, respectivamente;
-Roda do mouse - Aumenta ou diminui a distância focal;
+`A/D` - Gira o cubo no eixo Y, em sentidos opostos dependendo do botão;
 
-Espaço - Aumenta o ângulo do cubo em todos os eixos simultaneamente enquanto é apertado.
+`Q/E` - Gira o cubo no eixo Z, em sentidos opostos dependendo do botão;
+
+`I/O` - Aumentam e diminuem a distância focal, respectivamente;
+
+`Roda do mouse` - Aumenta ou diminui a distância focal;
+
+`Espaço` - Aumenta o ângulo do cubo em todos os eixos simultaneamente enquanto é apertado.
 
 ## Modelo Matemático
 
@@ -42,35 +45,37 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
 - ## Definindo os Pontos :
     - Primeiro definimos um cubo de dimensões arbitrárias. Para isso, criamos oito pontos (correspondentes aos vértices do cubo), com um valor x, y , z e 1, de forma que cada ponto têm sua distância aos três pontos adjacentes sendo igual, além de uma dimensão a mais para realizarmos calculos mais para frente, o que corresponde a um cubo.
     Isso nos dá uma matriz criada em NumPy, seguindo o seguinte modelo:
-        $$
+
+        $
                 
         pontos =
         \begin{bmatrix}
 
-        1, 1, 1, 1  \\
+        1 & 1 & 1 & 1  \\
 
-        1, 1, -1, 1 \\
+        1 & 1 & -1 & 1 \\
 
-        1, -1, 1, 1 \\
+        1 & -1 & 1 & 1 \\
 
-        1, -1, -1, 1 \\
+        1 & -1 & -1 & 1 \\
 
-        -1, 1, 1, 1 \\
+        -1 & 1 & 1 & 1 \\
 
-        -1, 1, -1, 1 \\
+        -1 & 1 & -1 & 1 \\
 
-        -1, -1, 1, 1 \\
+        -1 & -1 & 1 & 1 \\
 
-        -1, -1, -1, 1 \\
+        -1 & -1 & -1 & 1 \\
 
         \end{bmatrix}
-        $$
+
+        $
 
     Nosso objetivo será criar uma matriz generalizada T que faz todas as transformações necessárias nos pontos ao realizarmos uma multiplicação matricial. Isso será feito a seguir.
 
 
 - ## Definindo a transformação :
-    ### Note que :
+    ### Note que:
     Assumimos a distribuição dos eixos de pontos no seguinte formato para as matrizes de transformação :
     $$
         P = \begin{bmatrix}
@@ -86,7 +91,7 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
 
         O primeiro componente de nossa matriz T será o componente de rotação, constituido de três matrizes que representam uma rotação de $\theta$ graus nos eixos x,y,z.
 
-        Todas foram previamente adaptadas para rotacionar vetores de três dimensões e comportar uma dimensão a mais, que guarda uma variável de ajuste comumente usada para representação de objetos 3d (mais detalhes na explicação da matriz T).
+        Todas foram previamente adaptadas para rotacionar vetores de três dimensões e comportar uma dimensão a mais, que guarda uma variável de ajuste comumente usada para representação de objetos tridimensionais (mais detalhes na explicação da matriz T).
 
         O ângulo $\theta$ é configurado manualmente no código para cada uma dessas matrizes, permitindo rotação em qualquer eixo.
 
@@ -139,8 +144,11 @@ Antes de começarmos a elaborar equações, precisamos antes definir como repese
         - Com Dz representando o deslocamento no eixo z por iteração do código/comando.
         Este componente estará multiplicando a matriz de Rotação diretamente, visto que altera a visualização 3D emulada dos pontos.
 
-    - Projeção :
+    - Projeção:
+        
+        A matriz de projeção será a responsável em projetar nosso ponto tridimensional em duas dimensões. Ela leva em consideração a distância focal em relação ao objeto, representada por `d`.
 
+    
     - Traslação em x e y :
     
         Depois de aplicada a projeção para o plano 2D (Nossa tela) basta trasladarmos nosso cubo para uma posição que possamos visualiza-lo melhor, através de uma matriz de traslação comum redimensionada para 3 dimensões e com uma dimensão extra em padrão identidade.
