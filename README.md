@@ -170,6 +170,12 @@ $$
 
 Que rotaciona, distância/aproxima e translada nosso cubo de uma vez!
 
-Finalmente, podemos aplicar essa matriz aos nossos pontos, realizando uma multiplicação matricial de `T` por sua matriz de coordenadas, e tomando somente os valores de `x` e `y`. Isso ocorrerá em cada iteração do programa, ou seja, a cada frame, o que se dá por 60 vezes por segundo.
+Finalmente, podemos aplicar essa matriz aos nossos pontos, realizando uma multiplicação matricial de `T` por sua matriz de coordenadas transposta, e tomando somente os valores de `x` e `y`. Isso ocorrerá em cada iteração do programa, ou seja, a cada frame, o que se dá por 60 vezes por segundo. Chamando o ponto de `Pt` e o ponto final de `Pf`:
+
+$$
+Pf = TPt^T
+$$
+
+Note que cada coordenada `x` e `y` do ponto também é dividida por W, ou seja, o valor da coluna complementar da matriz de pontos. Dessa forma, temos pronta uma projeção de um cubo tridimensional em uma tela bidimensional!
 
 Referência : Notebook 4 de Algebra Linear, explicação e exemplo elaborados pelo Professor Tiago, 2023.
