@@ -43,7 +43,7 @@ Para inicializar o cubo, apenas rode o arquivo "cube-rotato.py" na sua IDE de pr
 Antes de começarmos a elaborar equações, precisamos antes definir como repesentaremos os pontos do nosso cubo, além de definir quais alterações serão necessárias para representá-lo em 2D e realizar rotações.
 
 - ## Definindo os Pontos :
-Primeiro definimos um cubo de dimensões arbitrárias. Para isso, criamos oito pontos (correspondentes aos vértices do cubo), com um valor x, y , z e 1, de forma que cada ponto têm sua distância aos três pontos adjacentes sendo igual, além de uma dimensão a mais para realizarmos calculos mais para frente, o que corresponde a um cubo.
+Primeiro definimos um cubo de dimensões arbitrárias. Para isso, criamos oito pontos (correspondentes aos vértices do cubo), com um valor `x`, `y` e `z`, de forma que cada ponto têm sua distância aos três pontos adjacentes sendo igual, além de uma dimensão a mais, representada por uma coluna de `1`, para realizarmos calculos mais para frente, o que corresponde a um cubo.
 Isso nos dá uma matriz criada em NumPy, seguindo o seguinte modelo:
 
 $$
@@ -59,10 +59,10 @@ $$
 \end{bmatrix}
 $$
 
-Nosso objetivo será criar uma matriz generalizada T que faz todas as transformações necessárias nos pontos ao realizarmos uma multiplicação matricial. Isso será feito a seguir.
+Nosso objetivo será criar uma matriz generalizada `T` que faz todas as transformações necessárias nos pontos ao realizarmos uma multiplicação matricial. Isso será feito a seguir.
 
 
-- ## Definindo a transformação :
+- ## Definindo a transformação
     ### Note que:
 Assumimos a distribuição dos eixos de pontos no seguinte formato para as matrizes de transformação:
 
@@ -75,13 +75,13 @@ W
 \end{bmatrix}
 $$
 
-Com W não sendo considerado como um eixo e usado apenas para o calculo final.
+Com W não sendo considerado como um eixo e usado apenas para o cálculo final.
     
 - Rotação:
 
-O primeiro componente de nossa matriz T será o componente de rotação, constituido de três matrizes que representam uma rotação de $\theta$ graus nos eixos x,y,z.
+O primeiro componente de nossa matriz `T` será o componente de rotação, constituido de três matrizes que representam uma rotação de $\theta$ graus nos eixos `x`, `y` e `z`.
 
-Todas foram previamente adaptadas para rotacionar vetores de três dimensões e comportar uma dimensão a mais, que guarda uma variável de ajuste comumente usada para representação de objetos tridimensionais (mais detalhes na explicação da matriz T).
+Todas foram previamente adaptadas para rotacionar vetores de três dimensões e comportar uma dimensão a mais, que guarda uma variável de ajuste comumente usada para representação de objetos tridimensionais (mais detalhes na explicação da matriz `T`).
 
 O ângulo $\theta$ é configurado manualmente no código para cada uma dessas matrizes, permitindo rotação em qualquer eixo.
 
@@ -116,7 +116,7 @@ $$
 
 - Translação em Z (Profundidade):
 
-O segundo componente será uma matriz comum de translação em Z, que definirá a distância aparente do cubo em relação a tela do computador, visto que Z será nosso eixo de profundidade:
+O segundo componente será uma matriz comum de translação em Z, que definirá a distância aparente do cubo em relação à tela do computador, visto que Z será nosso eixo de profundidade:
 
 $$
 P = 
@@ -148,7 +148,7 @@ $$
 
 - Traslação em x e y:
     
-Depois de aplicada a projeção para o plano 2D (Nossa tela) basta trasladarmos nosso cubo para uma posição que possamos visualiza-lo melhor, através de uma matriz de traslação comum redimensionada para 3 dimensões e com uma dimensão extra em padrão identidade.
+Depois de aplicada a projeção para o plano 2D, ou seja, a tela, basta trasladar nosso cubo para uma posição onde ele possa ser visualizado melhor, através de uma matriz de traslação comum redimensionada para 3 dimensões e com uma dimensão extra em padrão identidade.
 
 $$
 T =
@@ -162,7 +162,7 @@ $$
 
 - Matriz T:
 
-Com todas as matrizes anteriores, obtemos uma matriz de transformação T quando as multiplicamos na ordem correta. Ou seja:
+Com todas as matrizes anteriores, obtemos uma matriz de transformação `T` quando as multiplicamos na ordem correta. Ou seja:
 
 $$
 T = T_xPT_zR
@@ -170,5 +170,6 @@ $$
 
 Que rotaciona, distância/aproxima e translada nosso cubo de uma vez!
 
+Finalmente, podemos aplicar essa matriz aos nossos pontos, realizando uma multiplicação matricial de `T` por sua matriz de coordenadas, e tomando somente os valores de `x` e `y`. Isso ocorrerá em cada iteração do programa, ou seja, a cada frame, o que se dá por 60 vezes por segundo.
 
 Referência : Notebook 4 de Algebra Linear, explicação e exemplo elaborados pelo Professor Tiago, 2023.
