@@ -58,7 +58,7 @@ $$
 -1 & -1 & -1 & 1
 \end{bmatrix}
 $$
-
+# transpor
 Nosso objetivo será criar uma matriz generalizada `T` que faz todas as transformações necessárias nos pontos ao realizarmos uma multiplicação matricial. Isso será feito a seguir.
 
 
@@ -145,6 +145,7 @@ P =
 \end{bmatrix}
 $$
 
+# Explain
 
 - Traslação em x e y:
     
@@ -175,7 +176,7 @@ Finalmente, podemos aplicar essa matriz aos nossos pontos, realizando uma multip
 $$
 Pf = TPt^T
 $$
-
+# remover trabsposição
 Note que cada coordenada `x` e `y` do ponto também é dividida por W, ou seja, o valor da coluna complementar da matriz de pontos. Dessa forma, temos pronta uma projeção de um cubo tridimensional em uma tela bidimensional!
 
 Referência : Notebook 4 de Algebra Linear, explicação e exemplo elaborados pelo Professor Tiago, 2023.
