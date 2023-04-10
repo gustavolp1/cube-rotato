@@ -133,8 +133,127 @@ Este componente estará multiplicando a matriz de Rotação diretamente, visto q
 
 - Projeção:
         
-A matriz de projeção será a responsável em projetar nossos pontos tridimensionais em duas dimensões. Ela leva em consideração a distância focal em relação ao objeto, representada por `d`.
+A matriz de projeção será a responsável por projetar nossos pontos tridimensionais em duas dimensões representando uma transformação de 3D para 2D. Para criar uma matriz como essa, precisamos antes entender como e onde essa transformação já ocorre.
 
+O exemplo que utilizaremos para identificar essa matriz será o de um "pin-hole" um mecanismo/técnica de projeção utilizada na criação de imagens de cameras, telas de cinema, etc...
+
+A base do funcionamento de um pin-hole se dá de forma trigonométrica, significando que inicialmente usaremos equações de formato padrão.
+
+
+![DESENHO](/graph_drawing.jpg "Optional title")
+
+- Neste gráfico, representamos  o pin-hole pela origem.
+- Estamos levando em conta duas dimensões do objeto ($X_0,Y_0$) e uma no anteparo (linha em $X_p$)
+- Por conta disso podemos usar trigonometria simples para obter formulas. 
+- $d$ representa a distância entre anteparo e origem com $\theta$ sendo o angulo usado no calculo da semelhança de triângulos.
+
+Com isso, obtemos as seguintes formulas para nosso sistema/matriz:
+
+Por semelhança de triângulos temos que:
+$$
+\tan(\theta) = Y_p/X_p = Y_0 /X_0 \\
+$$
+Elaborando mais essa formula,para isolar $Y_0$ para achar o fator que multiplica $Y_p$ :
+$$
+Y_p * X_0/X_p = Y_0 \\
+$$
+Como queremos passar esses calculos para uma matriz, precisamos colocar essa função em um formato com apenas somas ou multiplicações simples - atribuimos o valor W para esse fim, trocando a divisão por ele.
+$$
+X_0/X_p = W \\
+$$
+Assim, a formula que usaremos será esta:
+$$
+Y_p * W = Y_0 \\
+$$
+Como consequência dessa troca por $W$, precisamos colocar a definição desse valor dentro de nossa matriz para depois dividirmos $Y_p$ por ele e obtermos o ponto correto. Com $X_p = -d$ .
+$$
+X_0/-d = W \\
+$$
+Com essa elaboração feita e sabendo que $Xp$ equivale a $-d$ para todo $Y$.
+$$
+X_p = -d
+$$
+
+Podemos então gerar uma matriz com base nessas três funções, com todos os pontos recebendo coordendas homogenêas para podermos realizar o calculo de W:
+
+$$
+\begin{bmatrix}
+Y_pW\\
+X_p\\
+W\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 & 0\\
+0 & 0 & -d\\
+0 & -1/d & 0\\
+\end{bmatrix}
+\begin{bmatrix}
+Y_0 & ... & Y_n\\
+X_0 & ... & X_n\\
+1 & ... & 1\\
+\end{bmatrix}
+$$
+
+$$
+P =
+\begin{bmatrix}
+1 & 0 & 0\\
+0 & 0 & -d\\
+0 & -1/d & 0\\
+\end{bmatrix}
+$$
+
+Para transferir para 3d primeiro vamos trabalhar esse mesmo calculo em 2D para os eixos $X$ e $Z$ ao invès de $X$ e $Y$ e ao fim do processo teremos:
+
+$$
+\begin{bmatrix}
+Z_pW\\
+X_p\\
+W\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 & 0\\
+0 & 0 & -d\\
+0 & -1/d & 0\\
+\end{bmatrix}
+\begin{bmatrix}
+Z_0\\
+X_0\\
+1\\
+\end{bmatrix}
+$$
+
+Note que $X_p$ continua sendo equivalente a $-d$ e que W também não muda, portanto podemos adicionar a seguinte equação ao sistema:
+$$
+Z_pW = Z_0
+$$
+
+Com isso em mente, basta colocar colocar o calculo de $Z$ na formula:
+
+$$
+\begin{bmatrix}
+Y_pW\\
+Z_pW\\
+X_p\\
+W\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & 0 & 0 & -d\\
+0 & 0 &-1/d & 0\\
+\end{bmatrix}
+\begin{bmatrix}
+Y_0\\
+Z_0\\
+X_0\\
+1\\
+\end{bmatrix}
+$$
+Assim obtivemos a matrix de projeção 3D para 2D que funciona para n pontos no plano 3D.
 $$
 P =
 \begin{bmatrix}
@@ -144,8 +263,6 @@ P =
 0 & 0 & -1/d & 0
 \end{bmatrix}
 $$
-
-# Explain
 
 - Traslação em x e y:
     
@@ -176,7 +293,7 @@ Finalmente, podemos aplicar essa matriz aos nossos pontos, realizando uma multip
 $$
 Pf = TPt^T
 $$
-# remover trabsposição
+# remover transposição
 Note que cada coordenada `x` e `y` do ponto também é dividida por W, ou seja, o valor da coluna complementar da matriz de pontos. Dessa forma, temos pronta uma projeção de um cubo tridimensional em uma tela bidimensional!
 
 Referência : Notebook 4 de Algebra Linear, explicação e exemplo elaborados pelo Professor Tiago, 2023.
