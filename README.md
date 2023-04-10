@@ -8,19 +8,13 @@ https://github.com/gustavolp1/cube-rotato
 
 ## Como instalar e executar
 
-- Instale o Python (https://www.python.org/) em sua máquina. O programa foi desenvolvido especificamente para Windows, portanto não há garantia de que funcionará em outros sistemas operacionais.
+> git clone git@github.com:gustavolp1/cube-rotato.git
 
-- Instale algum editor de texto/código, como o Visual Studio Code (https://code.visualstudio.com/).
-
-- Abra o Visual Studio Code, procure pela opção Clonar Repositório, e selecione Clonar da Internet. No campo, cole o seguinte link: https://github.com/gustavolp1/cube-rotato
-
-- Escolha uma localização em sua máquina para salvar o repositório clonado.
-
-- Abra o terminal e digite o comando a seguir:
+(Entre no diretório do repositório)
 
 > pip install -r "requirements.txt"
 
-- No Visual Studio, abra o arquivo "cube-rotato.py" dentro do repositório clonado. Você poderá usá-lo para testar o programa.
+> python cube-rotato.py
 
 ## Como usar o programa
 
@@ -42,40 +36,54 @@ Para inicializar o cubo, apenas rode o arquivo "cube-rotato.py" na sua IDE de pr
 
 Antes de começarmos a elaborar equações, precisamos antes definir como repesentaremos os pontos do nosso cubo, além de definir quais alterações serão necessárias para representá-lo em 2D e realizar rotações.
 
-- ## Definindo os Pontos :
-Primeiro definimos um cubo de dimensões arbitrárias. Para isso, criamos oito pontos (correspondentes aos vértices do cubo), com um valor `x`, `y` e `z`, de forma que cada ponto têm sua distância aos três pontos adjacentes sendo igual, além de uma dimensão a mais, representada por uma coluna de `1`, para realizarmos calculos mais para frente, o que corresponde a um cubo.
-Isso nos dá uma matriz criada em NumPy, seguindo o seguinte modelo:
+- ## Definindo os Pontos:
+Primeiro definimos um cubo de dimensões arbitrárias nos eixos `x`, `y` e `z`, além de uma dimensão adicional, `w` representada por uma linha de `1`s.
 
 $$
 \begin{bmatrix}
-1 & 1 & 1 & 1 \\
-1 & 1 & -1 & 1 \\
-1 & -1 & 1 & 1 \\
-1 & -1 & -1 & 1 \\
--1 & 1 & 1 & 1 \\
--1 & 1 & -1 & 1 \\
--1 & -1 & 1 & 1 \\
--1 & -1 & -1 & 1
+1 & 1 & 1 & 1 & -1 & -1 & -1 & -1 \\
+1 & 1 & -1 & -1 & 1 & 1 & -1 & -1 \\
+1 & -1 & 1 & -1 & 1 & -1 & 1 & -1 \\
+1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 
 \end{bmatrix}
 $$
-# transpor
+
 Nosso objetivo será criar uma matriz generalizada `T` que faz todas as transformações necessárias nos pontos ao realizarmos uma multiplicação matricial. Isso será feito a seguir.
 
 
 - ## Definindo a transformação
     ### Note que:
-Assumimos a distribuição dos eixos de pontos no seguinte formato para as matrizes de transformação:
+No formato de ponto:
 
 $$
 P = \begin{bmatrix}
-X \\
-Y \\
-Z \\
-W
+x \\
+y \\
+z \\
+w
 \end{bmatrix}
 $$
 
-Com W não sendo considerado como um eixo e usado apenas para o cálculo final.
+A dimensão `w` é usada somente para cálculos. Ela não representa uma coordenada em nosso plano. Seu uso é feito da seguinte forma:
+
+<!-- elaborar o por que do W dividir no x e y -->
+
+$$
+P = \begin{bmatrix}
+x/w \\
+y/w \\
+z \\
+w
+\end{bmatrix}
+$$
+
+A matriz `T` que será obtida até o final multiplicará com cada ponto.
+
+$$
+PontoFinal = TP
+$$
+
+
     
 - Rotação:
 
@@ -287,13 +295,5 @@ T = T_xPT_zR
 $$
 
 Que rotaciona, distância/aproxima e translada nosso cubo de uma vez!
-
-Finalmente, podemos aplicar essa matriz aos nossos pontos, realizando uma multiplicação matricial de `T` por sua matriz de coordenadas transposta, e tomando somente os valores de `x` e `y`. Isso ocorrerá em cada iteração do programa, ou seja, a cada frame, o que se dá por 60 vezes por segundo. Chamando o ponto de `Pt` e o ponto final de `Pf`:
-
-$$
-Pf = TPt^T
-$$
-# remover transposição
-Note que cada coordenada `x` e `y` do ponto também é dividida por W, ou seja, o valor da coluna complementar da matriz de pontos. Dessa forma, temos pronta uma projeção de um cubo tridimensional em uma tela bidimensional!
 
 Referência : Notebook 4 de Algebra Linear, explicação e exemplo elaborados pelo Professor Tiago, 2023.
