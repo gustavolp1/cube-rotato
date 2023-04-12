@@ -182,7 +182,7 @@ $$
 Como consequência dessa troca por $W$, precisamos colocar a definição desse valor dentro de nossa matriz para depois dividirmos $Y_p$ por ele e obtermos o ponto correto. Com $X_p = -d$.
 
 $$
-X_0/-d = W \\
+X_0 /-d = W \\
 $$
 
 Com essa elaboração feita e sabendo que $Xp$ equivale a $-d$ para todo $Y$.
@@ -200,6 +200,8 @@ X_p \\
 W
 \end{bmatrix}
 $$
+
+=
 
 $$
 \begin{bmatrix}
