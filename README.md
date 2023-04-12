@@ -230,15 +230,19 @@ Z_pW\\
 X_p\\
 W
 \end{bmatrix}
+$$
 
 =
 
+$$
 \begin{bmatrix}
 1 & 0 & 0\\
 0 & 0 & -d\\
 0 & -1/d & 0
 \end{bmatrix}
+$$
 
+$$
 \begin{bmatrix}
 Z_0\\
 X_0\\
