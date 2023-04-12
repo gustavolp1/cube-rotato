@@ -195,20 +195,20 @@ Podemos então gerar uma matriz com base nessas três funções, com todos os po
 
 $$
 \begin{bmatrix}
-Y_pW\\
-X_p\\
+Y_pW \\
+X_p \\
 W
 \end{bmatrix}
 =
 \begin{bmatrix}
-1 & 0 & 0\\
-0 & 0 & -d\\
-0 & -1/d & 0\\
+1 & 0 & 0 \\
+0 & 0 & -d \\
+0 & -1/d & 0
 \end{bmatrix}
 
 \begin{bmatrix}
-Y_0 & ... & Y_n\\
-X_0 & ... & X_n\\
+Y_0 & ... & Y_n \\
+X_0 & ... & X_n \\
 1 & ... & 1
 \end{bmatrix}
 $$
@@ -216,8 +216,8 @@ $$
 $$
 P =
 \begin{bmatrix}
-1 & 0 & 0\\
-0 & 0 & -d\\
+1 & 0 & 0 \\
+0 & 0 & -d \\
 0 & -1/d & 0
 \end{bmatrix}
 $$
@@ -226,26 +226,22 @@ Para transferir para 3D, primeiro vamos trabalhar esse mesmo cálculo em 2D para
 
 $$
 \begin{bmatrix}
-Z_pW\\
-X_p\\
+Z_pW \\
+X_p \\
 W
 \end{bmatrix}
-$$
 
 =
 
-$$
 \begin{bmatrix}
-1 & 0 & 0\\
-0 & 0 & -d\\
+1 & 0 & 0 \\
+0 & 0 & -d \\
 0 & -1/d & 0
 \end{bmatrix}
-$$
 
-$$
 \begin{bmatrix}
-Z_0\\
-X_0\\
+Z_0 \\
+X_0 \\
 1
 \end{bmatrix}
 $$
@@ -260,26 +256,25 @@ Com isso em mente, basta colocar o cálculo de $Z$ na formula:
 
 $$
 \begin{bmatrix}
-Y_pW\\
-Z_pW\\
-X_p\\
-W\\
+Y_pW \\
+Z_pW \\
+X_p \\
+W
 \end{bmatrix}
 
 =
 
 \begin{bmatrix}
-1 & 0 & 0 & 0\\
-0 & 1 & 0 & 0\\
-0 & 0 & 0 & -d\\
-0 & 0 &-1/d & 0\\
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & -d \\
+0 & 0 &-1/d & 0
 \end{bmatrix}
-
 \begin{bmatrix}
-Y_0\\
-Z_0\\
-X_0\\
-1\\
+Y_0 \\
+Z_0 \\
+X_0 \\
+1
 \end{bmatrix}
 $$
 
