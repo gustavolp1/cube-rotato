@@ -191,13 +191,13 @@ $$
 X_p = -d
 $$
 
-Podemos então gerar uma matriz com base nessas três funções, com todos os pontos recebendo coordendas homogenêas para podermos realizar o calculo de W:
+Podemos então gerar uma matriz com base nessas três funções, com todos os pontos recebendo coordendas homogenêas para podermos realizar o cálculo de W:
 
 $$
 \begin{bmatrix}
 Y_pW\\
 X_p\\
-W\\
+W
 \end{bmatrix}
 =
 \begin{bmatrix}
@@ -208,7 +208,7 @@ W\\
 \begin{bmatrix}
 Y_0 & ... & Y_n\\
 X_0 & ... & X_n\\
-1 & ... & 1\\
+1 & ... & 1
 \end{bmatrix}
 $$
 
@@ -217,7 +217,7 @@ P =
 \begin{bmatrix}
 1 & 0 & 0\\
 0 & 0 & -d\\
-0 & -1/d & 0\\
+0 & -1/d & 0
 \end{bmatrix}
 $$
 
@@ -227,18 +227,18 @@ $$
 \begin{bmatrix}
 Z_pW\\
 X_p\\
-W\\
+W
 \end{bmatrix}
 =
 \begin{bmatrix}
 1 & 0 & 0\\
 0 & 0 & -d\\
-0 & -1/d & 0\\
+0 & -1/d & 0
 \end{bmatrix}
 \begin{bmatrix}
 Z_0\\
 X_0\\
-1\\
+1
 \end{bmatrix}
 $$
 
