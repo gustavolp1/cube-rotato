@@ -199,9 +199,6 @@ Y_0 & ... & Y_n\\
 X_0 & ... & X_n\\
 1 & ... & 1\\
 \end{bmatrix}
-$$
-
-$$
 P =
 \begin{bmatrix}
 1 & 0 & 0\\
@@ -210,7 +207,7 @@ P =
 \end{bmatrix}
 $$
 
-Para transferir para 3d primeiro vamos trabalhar esse mesmo calculo em 2D para os eixos $X$ e $Z$ ao invès de $X$ e $Y$ e ao fim do processo teremos:
+Para transferir para 3D, primeiro vamos trabalhar esse mesmo cálculo em 2D para os eixos $X$ e $Z$ ao invès de $X$ e $Y$ e ao fim do processo teremos:
 
 $$
 \begin{bmatrix}
@@ -232,11 +229,12 @@ X_0\\
 $$
 
 Note que $X_p$ continua sendo equivalente a $-d$ e que W também não muda, portanto podemos adicionar a seguinte equação ao sistema:
+
 $$
 Z_pW = Z_0
 $$
 
-Com isso em mente, basta colocar colocar o calculo de $Z$ na formula:
+Com isso em mente, basta colocar o cálculo de $Z$ na formula:
 
 $$
 \begin{bmatrix}
