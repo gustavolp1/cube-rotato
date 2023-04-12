@@ -159,7 +159,7 @@ Por semelhança de triângulos temos que:
 $$
 \tan(\theta) = Y_p/X_p = Y_0 /X_0 \\
 $$
-Elaborando mais essa formula,para isolar $Y_0$ para achar o fator que multiplica $Y_p$ :
+Elaborando mais essa formula, para isolar $Y_0$ para achar o fator que multiplica $Y_p$:
 $$
 Y_p * X_0/X_p = Y_0 \\
 $$
@@ -259,7 +259,9 @@ X_0\\
 1\\
 \end{bmatrix}
 $$
+
 Assim obtivemos a matrix de projeção 3D para 2D que funciona para n pontos no plano 3D.
+
 $$
 P =
 \begin{bmatrix}
@@ -293,5 +295,3 @@ T = T_xPT_zR
 $$
 
 Que rotaciona, distância/aproxima e translada nosso cubo de uma vez!
-
-Referência : Notebook 4 de Algebra Linear, explicação e exemplo elaborados pelo Professor Tiago, 2023.
