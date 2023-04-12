@@ -156,26 +156,37 @@ A base do funcionamento de um pin-hole se dá de forma trigonométrica, signific
 Com isso, obtemos as seguintes formulas para nosso sistema/matriz:
 
 Por semelhança de triângulos temos que:
+
 $$
 \tan(\theta) = Y_p/X_p = Y_0 /X_0 \\
 $$
+
 Elaborando mais essa formula, para isolar $Y_0$ para achar o fator que multiplica $Y_p$:
+
 $$
 Y_p * X_0/X_p = Y_0 \\
 $$
+
 Como queremos passar esses calculos para uma matriz, precisamos colocar essa função em um formato com apenas somas ou multiplicações simples - atribuimos o valor W para esse fim, trocando a divisão por ele.
+
 $$
 X_0/X_p = W \\
 $$
+
 Assim, a formula que usaremos será esta:
+
 $$
 Y_p * W = Y_0 \\
 $$
-Como consequência dessa troca por $W$, precisamos colocar a definição desse valor dentro de nossa matriz para depois dividirmos $Y_p$ por ele e obtermos o ponto correto. Com $X_p = -d$ .
+
+Como consequência dessa troca por $W$, precisamos colocar a definição desse valor dentro de nossa matriz para depois dividirmos $Y_p$ por ele e obtermos o ponto correto. Com $X_p = -d$.
+
 $$
 X_0/-d = W \\
 $$
+
 Com essa elaboração feita e sabendo que $Xp$ equivale a $-d$ para todo $Y$.
+
 $$
 X_p = -d
 $$
@@ -199,6 +210,9 @@ Y_0 & ... & Y_n\\
 X_0 & ... & X_n\\
 1 & ... & 1\\
 \end{bmatrix}
+$$
+
+$$
 P =
 \begin{bmatrix}
 1 & 0 & 0\\
