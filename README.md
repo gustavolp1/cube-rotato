@@ -199,9 +199,9 @@ Y_pW \\
 X_p \\
 W
 \end{bmatrix}
-\hspace{0.5in}
-=
-\hspace{0.5in}
+$$
+
+$$
 \begin{bmatrix}
 1 & 0 & 0 \\
 0 & 0 & -d \\
