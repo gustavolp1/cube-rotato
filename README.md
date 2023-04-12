@@ -199,17 +199,13 @@ Y_pW \\
 X_p \\
 W
 \end{bmatrix}
-$$
-
-$$
+\hspace{0.5in}
 \begin{bmatrix}
 1 & 0 & 0 \\
 0 & 0 & -d \\
 0 & -1/d & 0
 \end{bmatrix}
-$$
-
-$$
+\hspace{0.5in}
 \begin{bmatrix}
 Y_0 & ... & Y_n \\
 X_0 & ... & X_n \\
