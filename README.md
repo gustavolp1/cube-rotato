@@ -230,15 +230,13 @@ Z_pW \\
 X_p \\
 W
 \end{bmatrix}
-
-=
-
-\begin{bmatrix}
+\hspace{0.5in}
+= \begin{bmatrix}
 1 & 0 & 0 \\
 0 & 0 & -d \\
 0 & -1/d & 0
 \end{bmatrix}
-
+\hspace{0.5in}
 \begin{bmatrix}
 Z_0 \\
 X_0 \\
@@ -261,15 +259,14 @@ Z_pW \\
 X_p \\
 W
 \end{bmatrix}
-
-=
-
-\begin{bmatrix}
+\hspace{0.5in}
+= \begin{bmatrix}
 1 & 0 & 0 & 0 \\
 0 & 1 & 0 & 0 \\
 0 & 0 & 0 & -d \\
 0 & 0 &-1/d & 0
 \end{bmatrix}
+\hspace{0.5in}
 \begin{bmatrix}
 Y_0 \\
 Z_0 \\
@@ -281,8 +278,7 @@ $$
 Assim obtivemos a matrix de projeção 3D para 2D que funciona para n pontos no plano 3D.
 
 $$
-P =
-\begin{bmatrix}
+P = \begin{bmatrix}
 1 & 0 & 0 & 0 \\
 0 & 1 & 0 & 0 \\
 0 & 0 & 0 & -d \\
@@ -295,8 +291,7 @@ $$
 Depois de aplicada a projeção para o plano 2D, ou seja, a tela, basta trasladar nosso cubo para uma posição onde ele possa ser visualizado melhor, através de uma matriz de traslação comum redimensionada para 3 dimensões e com uma dimensão extra em padrão identidade.
 
 $$
-T =
-\begin{bmatrix}
+T = \begin{bmatrix}
 1 & 0 & 0 & H/2 \\
 0 & 1 & 0 & W/2 \\
 0 & 0 & 1 & 0 \\
