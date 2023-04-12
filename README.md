@@ -207,7 +207,9 @@ $$
 0 & 0 & -d \\
 0 & -1/d & 0
 \end{bmatrix}
+$$
 
+$$
 \begin{bmatrix}
 Y_0 & ... & Y_n \\
 X_0 & ... & X_n \\
