@@ -53,7 +53,7 @@ Nosso objetivo será criar uma matriz generalizada `T` que faz todas as transfor
 
 - ## Definindo a transformação
     ### Note que:
-No formato de ponto:
+Este será o formato dos pontos:
 
 $$
 P = \begin{bmatrix}
@@ -64,9 +64,7 @@ w
 \end{bmatrix}
 $$
 
-A dimensão `w` é usada somente para cálculos. Ela não representa uma coordenada em nosso plano. Seu uso é feito da seguinte forma:
-
-<!-- elaborar o por que do W dividir no x e y -->
+- A dimensão `w` é usada somente para cálculos. Ela não representa uma coordenada em nosso plano. Seu uso é feito da seguinte forma:
 
 $$
 P = \begin{bmatrix}
