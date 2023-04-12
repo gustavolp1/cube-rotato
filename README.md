@@ -153,7 +153,7 @@ A base do funcionamento de um pin-hole se dá de forma trigonométrica, signific
 - Por conta disso podemos usar trigonometria simples para obter formulas. 
 - $d$ representa a distância entre anteparo e origem com $\theta$ sendo o angulo usado no calculo da semelhança de triângulos.
 
-Com isso, obtemos as seguintes formulas para nosso sistema/matriz:
+Com isso, obtemos as seguintes fórmulas para nosso sistema/matriz:
 
 Por semelhança de triângulos temos que:
 
@@ -161,7 +161,7 @@ $$
 \tan(\theta) = Y_p/X_p = Y_0 /X_0 \\
 $$
 
-Elaborando mais essa formula, para isolar $Y_0$ para achar o fator que multiplica $Y_p$:
+Elaborando mais essa fórmula, para isolar $Y_0$ e achar o fator que multiplica $Y_p$:
 
 $$
 Y_p * X_0/X_p = Y_0 \\
@@ -199,7 +199,9 @@ Y_pW \\
 X_p \\
 W
 \end{bmatrix}
-=
+$$
+
+$$
 \begin{bmatrix}
 1 & 0 & 0 \\
 0 & 0 & -d \\
