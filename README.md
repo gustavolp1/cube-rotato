@@ -199,12 +199,8 @@ Y_pW \\
 X_p \\
 W
 \end{bmatrix}
-$$
-
-=
-
-$$
-\begin{bmatrix}
+\hspace{0.5in}
+= \begin{bmatrix}
 1 & 0 & 0 \\
 0 & 0 & -d \\
 0 & -1/d & 0
